@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MenuButtons : MonoBehaviour
 {
 	public void playButton() {
-		SceneManager.LoadScene("Level 1");
+		SceneManager.LoadScene("Level 1 - Forest");
 	}
 
 	public void quitButton() {

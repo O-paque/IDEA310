@@ -2,17 +2,14 @@ using UnityEngine;
 using TMPro;
 
 public class PizzaCollector : MonoBehaviour
-{
-    public TMP_Text pizzaText;
-    private int pizzaCount = 0;
+{   
+    public int value = 1;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pizza")
+        if (other.tag == "Player")
         {
-            Debug.Log("Pizza collected!");
-            pizzaCount++;
-            pizzaText.text = "Pizzas: " + pizzaCount; 
-            Destroy(other.gameObject);
+            FindFirstObjectByType<GameManager>().CollectPizza(1); // Increment pizza count in GameManager
+            Destroy(gameObject);
         }
     }
 }

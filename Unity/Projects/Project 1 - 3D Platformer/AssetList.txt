@@ -1,3 +1,5 @@
 Particle Pack: https://assetstore.unity.com/packages/vfx/particles/particle-pack-127325
 Baked Break and Pastry: https://assetstore.unity.com/packages/3d/props/food/baked-bread-and-pastry-338188
 Terrain Sample Asset Pack: https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808
+PBR Pizza: https://assetstore.unity.com/packages/3d/props/food/pbr-pizza-108425
+European Forests: https://assetstore.unity.com/packages/3d/vegetation/trees/european-forests-realistic-trees-229716#description
