@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 public class MenuButtons : MonoBehaviour
 {
 	public void playButton() {
-		SceneManager.LoadScene("Level 1 - Forest");
+		SceneManager.LoadScene("ControlsScreen");
+		Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 	}
 
 	public void quitButton() {

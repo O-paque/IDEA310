@@ -46,6 +46,15 @@ namespace StarterAssets
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
 
+        [Header("Slope Sliding")]
+        private Vector3 _groundNormal = Vector3.up;
+        private bool _onSteepSlope;
+        public bool SlideOnSteepSlopes = true;
+        public float SlideSpeed = 10f;          // tune
+        public float SlideGravity = 20f;       // tune
+        public float SlideRayLength = 1.5f;    // tune
+        public float SlideAngle = 30f;         // tune, degrees
+
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
         public bool Grounded = true;
@@ -188,6 +197,20 @@ namespace StarterAssets
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
             }
+            _groundNormal = Vector3.up;
+            _onSteepSlope = false;
+
+            if (Grounded)
+            {
+                // Cast from a bit above the player downwards
+                Vector3 origin = transform.position + Vector3.up * 0.2f;
+                if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, SlideRayLength, GroundLayers, QueryTriggerInteraction.Ignore))
+                {
+                    _groundNormal = hit.normal;
+                    float angle = Vector3.Angle(_groundNormal, Vector3.up);
+                    _onSteepSlope = angle > SlideAngle;
+                }
+            }
         }
 
         private void CameraRotation()
@@ -267,9 +290,22 @@ namespace StarterAssets
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
+            Vector3 slide = Vector3.zero;
+
+            if (SlideOnSteepSlopes && Grounded && _onSteepSlope)
+            {
+                // Direction down the slope (project gravity onto the slope plane)
+                Vector3 downSlope = Vector3.ProjectOnPlane(Vector3.down, _groundNormal).normalized;
+                slide = downSlope * SlideSpeed;
+
+                // Optional: add extra “pull” down slope
+                slide += downSlope * SlideGravity * Time.deltaTime;
+            }
+
             // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            _controller.Move( targetDirection.normalized * (_speed * Time.deltaTime) +
+                new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime + slide * Time.deltaTime
+            );
 
             // update animator if using character
             if (_hasAnimator)
