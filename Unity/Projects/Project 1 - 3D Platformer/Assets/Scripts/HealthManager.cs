@@ -5,7 +5,7 @@ public class HealthManager : MonoBehaviour
 {
     public CharacterController player;
     private bool isRespawning = false;
-    private Vector3 respawnPoint;
+    public Vector3 respawnPoint;
 
     public int maxHealth = 2;
     public int currentHealth;
@@ -54,13 +54,22 @@ public class HealthManager : MonoBehaviour
         player.gameObject.SetActive(false); 
 
         yield return new WaitForSeconds(3f);
-
-        isRespawning = false;
+        
         player.transform.position = respawnPoint;
+
         player.gameObject.SetActive(true);
         player.enabled = true;
-        player.Move(Vector3.zero); 
-        currentHealth = maxHealth; 
+        var tpc = player.GetComponent<StarterAssets.ThirdPersonController>();
+        if (tpc != null)        {
+            tpc.ResetControllerState();
+        }
+        currentHealth = maxHealth;
+        isRespawning = false;
+    }
+
+    public void setRespawnPoint(Vector3 newRespawnPoint)
+    {
+        respawnPoint = newRespawnPoint;
     }
 
 }
