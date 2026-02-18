@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0514fd6bea5fd27468c1b2e2a6a2a59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnUpdate
+  slideStrengthAtCheckpoint: 1
 --- !u!65 &67501382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -776,6 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0514fd6bea5fd27468c1b2e2a6a2a59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnUpdate
+  slideStrengthAtCheckpoint: 1
 --- !u!65 &101627774
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1010,70 +1012,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 847768247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &129949664
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 129949666}
-  - component: {fileID: 129949665}
-  - component: {fileID: 129949667}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &129949665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129949664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8e6e207ed164a4bbfe66b0634c4104, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  currentPizzas: 3
-  pizzasToCollect: 6
-  pizzaText: {fileID: 1434209980}
---- !u!4 &129949666
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129949664}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.96764, y: 0, z: -6.71525}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &129949667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129949664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803a5eac136d5c44fb778dcdd9bd8f31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthManager
-  player: {fileID: 1925285178}
-  respawnPoint: {x: 0, y: 0, z: 0}
-  maxHealth: 10
-  currentHealth: 0
 --- !u!1 &146239949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,6 +1230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0514fd6bea5fd27468c1b2e2a6a2a59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnUpdate
+  slideStrengthAtCheckpoint: 1
 --- !u!65 &154071384
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10946,6 +10885,7 @@ GameObject:
   - component: {fileID: 1434209979}
   - component: {fileID: 1434209981}
   - component: {fileID: 1434209980}
+  - component: {fileID: 1434209982}
   m_Layer: 5
   m_Name: Pizza Text
   m_TagString: Untagged
@@ -11072,6 +11012,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434209978}
   m_CullTransparentMesh: 1
+--- !u!114 &1434209982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434209978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915f2e01e4fdc4c44985ac2e9db9bc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectTextUI
+  pizzaText: {fileID: 1434209980}
 --- !u!1 &1453496509
 GameObject:
   m_ObjectHideFlags: 0
@@ -13022,7 +12975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e433a33d5a0d664ba76f3613d764585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelTransition
-  nextLevel: Level 3 - TBD
+  nextLevel: Level 3 - Space
+  pizzasToCollect: 6
   player: {fileID: 1925285178}
 --- !u!65 &1727963005
 BoxCollider:
@@ -15813,5 +15767,4 @@ SceneRoots:
   - {fileID: 1569918170}
   - {fileID: 749830780}
   - {fileID: 1858690739}
-  - {fileID: 129949666}
   - {fileID: 56750858}

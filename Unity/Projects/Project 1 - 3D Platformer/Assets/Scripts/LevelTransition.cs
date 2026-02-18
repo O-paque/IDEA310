@@ -5,6 +5,7 @@ public class LevelTransition : MonoBehaviour
 {
 
     public string nextLevel;
+    public int pizzasToCollect;
     public CharacterController player;
     private GameManager gameManager;
 
@@ -17,7 +18,6 @@ public class LevelTransition : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             int pizzaCount = gameManager.getPizzaCount();
-            int pizzasToCollect = gameManager.getPizzasToCollect();
             if (pizzaCount >= pizzasToCollect)
             {
                 player.gameObject.SetActive(false); 

@@ -1393,7 +1393,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   currentPizzas: 0
   pizzasToCollect: 3
-  pizzaText: {fileID: 182517854}
 --- !u!4 &100124356
 Transform:
   m_ObjectHideFlags: 0
@@ -11855,6 +11854,7 @@ GameObject:
   - component: {fileID: 182517853}
   - component: {fileID: 182517855}
   - component: {fileID: 182517854}
+  - component: {fileID: 182517856}
   m_Layer: 5
   m_Name: Pizza Text
   m_TagString: Untagged
@@ -11981,6 +11981,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182517852}
   m_CullTransparentMesh: 1
+--- !u!114 &182517856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182517852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915f2e01e4fdc4c44985ac2e9db9bc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectTextUI
+  pizzaText: {fileID: 182517854}
 --- !u!4 &187012991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 405216939484306448, guid: 5d5b6367d91d1fa4eb041898c9ace397, type: 3}
@@ -118888,6 +118901,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 974238578668270715, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
+      propertyPath: SlideStrength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 974238578668270715, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: RotationSmoothTime
       value: 0.117
       objectReference: {fileID: 0}
@@ -122086,6 +122103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelTransition
   nextLevel: Level 2 - Mountain
+  pizzasToCollect: 3
   player: {fileID: 1977779034}
 --- !u!65 &1926794777
 BoxCollider:

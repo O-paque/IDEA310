@@ -9,9 +9,9 @@ using UnityEngine.InputSystem;
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
-    #if ENABLE_INPUT_SYSTEM
-        [RequireComponent(typeof(PlayerInput))]
-    #endif
+#if ENABLE_INPUT_SYSTEM
+    [RequireComponent(typeof(PlayerInput))]
+#endif
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player")]
@@ -66,6 +66,12 @@ namespace StarterAssets
 
         [Tooltip("What layers count as ground for sliding (defaults to GroundLayers)")]
         public LayerMask SlideGroundLayers;
+
+        // NEW: runtime tuning for checkpoints
+        [Header("Slide Effectiveness (Runtime)")]
+        [Tooltip("1 = normal slide, 0 = no sliding, <1 = less effective, >1 = stronger")]
+        [Range(0f, 2f)]
+        public float SlideStrength = 1f;
 
         private Vector3 _groundNormal = Vector3.up;
         private bool _onSteepSlope;
@@ -123,9 +129,9 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
-        #if ENABLE_INPUT_SYSTEM
-            private PlayerInput _playerInput;
-        #endif
+#if ENABLE_INPUT_SYSTEM
+        private PlayerInput _playerInput;
+#endif
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
@@ -139,11 +145,11 @@ namespace StarterAssets
         {
             get
             {
-                #if ENABLE_INPUT_SYSTEM
-                    return _playerInput.currentControlScheme == "KeyboardMouse";
-                #else
-                    return false;
-                #endif
+#if ENABLE_INPUT_SYSTEM
+                return _playerInput.currentControlScheme == "KeyboardMouse";
+#else
+                return false;
+#endif
             }
         }
 
@@ -169,11 +175,11 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-            #if ENABLE_INPUT_SYSTEM
-                _playerInput = GetComponent<PlayerInput>();
-            #else
-                Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-            #endif
+#if ENABLE_INPUT_SYSTEM
+            _playerInput = GetComponent<PlayerInput>();
+#else
+            Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+#endif
 
             AssignAnimationIDs();
 
@@ -302,7 +308,12 @@ namespace StarterAssets
             // --- Slope sliding (revised to feel faster) ---
             Vector3 slide = Vector3.zero;
 
-            if (SlideOnSteepSlopes && Grounded && _onSteepSlope)
+            // If slide is turned off via checkpoints, don't accumulate velocity
+            if (SlideStrength <= 0f)
+            {
+                _slideVelocity = 0f;
+            }
+            else if (SlideOnSteepSlopes && Grounded && _onSteepSlope)
             {
                 float angle = Vector3.Angle(_groundNormal, Vector3.up);
                 float steep01 = Mathf.InverseLerp(SlideAngle, 89f, angle); // 0..1 once past SlideAngle
@@ -313,7 +324,9 @@ namespace StarterAssets
                 _slideVelocity = Mathf.MoveTowards(_slideVelocity, maxVel, SlideAcceleration * Time.deltaTime);
 
                 Vector3 downSlope = Vector3.ProjectOnPlane(Vector3.down, _groundNormal).normalized;
-                slide = downSlope * _slideVelocity;
+
+                // NEW: apply effectiveness multiplier here
+                slide = downSlope * (_slideVelocity * SlideStrength);
             }
             else
             {
@@ -447,6 +460,16 @@ namespace StarterAssets
                     transform.TransformPoint(_controller.center),
                     FootstepAudioVolume
                 );
+            }
+        }
+
+        // NEW: call this from a checkpoint trigger
+        public void SetSlideEffectiveness(float strength01)
+        {
+            SlideStrength = Mathf.Clamp(strength01, 0f, 2f);
+            if (SlideStrength <= 0f)
+            {
+                _slideVelocity = 0f;
             }
         }
 
