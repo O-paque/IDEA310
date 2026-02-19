@@ -799,6 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   continueText: {fileID: 1799925565}
+  sceneToLoad: Level 1 - Forest
 --- !u!114 &1895999533
 MonoBehaviour:
   m_ObjectHideFlags: 0
