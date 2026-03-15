@@ -1,5 +1,25 @@
-Particle Pack: https://assetstore.unity.com/packages/vfx/particles/particle-pack-127325
-Baked Break and Pastry: https://assetstore.unity.com/packages/3d/props/food/baked-bread-and-pastry-338188
-Terrain Sample Asset Pack: https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808
-PBR Pizza: https://assetstore.unity.com/packages/3d/props/food/pbr-pizza-108425
-European Forests: https://assetstore.unity.com/packages/3d/vegetation/trees/european-forests-realistic-trees-229716#description
+Assets:
+- Particle Pack: https://assetstore.unity.com/packages/vfx/particles/particle-pack-127325
+- Terrain Sample Asset Pack: https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808
+- PBR Pizza: https://assetstore.unity.com/packages/3d/props/food/pbr-pizza-108425
+- European Forests: https://assetstore.unity.com/packages/3d/vegetation/trees/european-forests-realistic-trees-229716#description
+- SpaceSkies Free: https://assetstore.unity.com/packages/2d/textures-materials/sky/spaceskies-free-80503
+- AllSky Free: https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014
+- Planet Earth Free: https://assetstore.unity.com/packages/3d/environments/sci-fi/planet-earth-free-23399
+- Star Pack Advanced Sparkle System: https://assetstore.unity.com/packages/vfx/particles/star-pack-advanced-sparkle-system-185515
+- Hyper Casual FX: https://assetstore.unity.com/packages/vfx/particles/hyper-casual-fx-200333
+- 3D Asteroid Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/3d-asteroid-pack-263841
+- Planets of the Solar System 3D: https://assetstore.unity.com/packages/3d/environments/planets-of-the-solar-system-3d-90219
+
+Materials:
+- Damascus Steel PBR Material: https://freepbr.com/product/damascus-steel-pbr/
+- Eroded Smoothed Rockface PBR Material: https://freepbr.com/product/eroded-smoothed-rockface/
+- Futuristic Cube Metal PBR Material: https://freepbr.com/product/futuristic-cube-metal/
+- Scuffed Gold PBR Metal Material: https://freepbr.com/product/scuffed-gold-pbr-metal-material/
+- Ornate Celtic Gold PBR Metal Material: https://freepbr.com/product/ornate-celtic-gold/
+- Red SciFi Metal PBR Material: https://freepbr.com/product/red-scifi-metal/
+- Rocky Asphalt 1 PBR Material: https://freepbr.com/product/rocky-asphalt-1/
+- Vines PBR Material: https://freepbr.com/product/vines-pbr/
+
+Music:
+- 30 Sci-fi Space Tracks Music Pack: https://alkakrab.itch.io/sci-fi-music-pack-vol-3
