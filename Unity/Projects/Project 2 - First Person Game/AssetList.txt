@@ -1,0 +1,26 @@
+General Assets:
+
+Animated Keys - https://karsiori.itch.io/pixel-art-key-pack-animated
+Crosshair Sprite - https://www.vecteezy.com/png/23554742-cross-check-symbol-on-transparent-background
+Rust Key - https://assetstore.unity.com/packages/3d/props/rust-key-167590
+Long Sword - https://assetstore.unity.com/packages/3d/props/weapons/long-sword-212082
+Dungeon Skeletons - https://assetstore.unity.com/packages/3d/characters/creatures/dungeon-skeletons-demo-71087
+Free Skull Asset - https://assetstore.unity.com/packages/p/free-skull-asset-330417
+Decrepit Dungeons Lite - https://assetstore.unity.com/packages/3d/environments/dungeons/decrepit-dungeon-lite-33936
+Caves and Dungeons - https://assetstore.unity.com/packages/audio/music/caves-and-dungeons-292342
+RPG Dungeons Kit - https://assetstore.unity.com/packages/3d/environments/dungeons/rpg-dungeon-kit-demo-348672
+Hyper Casual FX - https://assetstore.unity.com/packages/p/hyper-casual-fx-200333
+European Forests - assetstore.unity.com/packages/p/european-forests-realistic-trees-229716
+Particle Pack - https://assetstore.unity.com/packages/vfx/particles/particle-pack-127325
+
+Materials:
+
+Aged Wood Planks: https://freepbr.com/product/aged-wood-planks-pbr-material/
+Bone: https://freepbr.com/product/bone-pbr-material/
+Clay Shingles: https://freepbr.com/product/clay-shingles1/
+Lava and Rock: https://freepbr.com/product/lava-and-rock-pbr/
+Mixed Moss: https://freepbr.com/product/mossy-mixed-ground/
+Oak Wood Bare: https://freepbr.com/product/oak-wood-bare-pbr/
+Patched Brick: https://freepbr.com/product/patched-brickwork-pbr/
+Sloppy Mortar: https://freepbr.com/product/sloppy-mortar-stone-wall-pbr/
+Tidal Pools: https://freepbr.com/product/tidal-pools-2/

@@ -1,6 +1,7 @@
 # Ignore submission folder
 ZIPs/
 Submissions/
+**/Assets/Imported/
 ### Unity ###
 # This .gitignore file should be placed at the root of your Unity project directory
 #
@@ -11,7 +12,7 @@ Submissions/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 *_DoNotShip/
-
+*.mp4
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/

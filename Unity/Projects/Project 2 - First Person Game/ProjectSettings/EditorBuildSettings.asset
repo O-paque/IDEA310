@@ -6,8 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Main Menu.unity
+    guid: d525a97c6482c9d4f8e842f74921a8f0
+  - enabled: 1
+    path: Assets/Scenes/Controls.unity
+    guid: a1d59f12f085d7b45b9cc22122a39ba1
+  - enabled: 1
+    path: Assets/Scenes/Level 1 - Castle.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Level 2 - Tunnels.unity
+    guid: 1783d9f8328b59e49ad5131c5b879c5f
+  - enabled: 1
+    path: Assets/Scenes/Level 3 - Crypts.unity
+    guid: 37e358ccc7520784781a850dbfa8a5d9
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: bec6bccf6b5691d4b88321abc083888a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
