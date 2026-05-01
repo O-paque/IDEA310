@@ -1,18 +1,19 @@
 using UnityEngine;
 using System.Collections;
 
-public class SwordBehavior : MonoBehaviour
+public class PickaxeBehavior : MonoBehaviour
 {
     [Header("Swing Settings")]
     [SerializeField] private float swingDuration = 0.2f;
     [SerializeField] private float returnDuration = 0.15f;
-    [SerializeField] private Vector3 swingRotation = new Vector3(0f, 0f, -80f);
+    [SerializeField] private Vector3 swingRotation = new Vector3(-80f, 0f, 0f);
 
-    [Header("Damage Settings")]
-    [SerializeField] private int damage = 25;
-    [SerializeField] private float attackRange = 2.0f;
+    [Header("Mining Settings")]
+    [SerializeField] private int miningDamage = 1;
+    [SerializeField] private float miningRange = 2.5f;
 
     [Header("Sounds")]
+    public TriggeredSoundEffect mineSoundEffect;
     public TriggeredSoundEffect swingSoundEffect;
 
     private Quaternion startLocalRotation;
@@ -30,17 +31,17 @@ public class SwordBehavior : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isSwinging)
         {
             swingSoundEffect?.PlaySound();
-            StartCoroutine(SwingSword());
+            StartCoroutine(SwingPickaxe());
         }
     }
 
-    private IEnumerator SwingSword()
+    private IEnumerator SwingPickaxe()
     {
         isSwinging = true;
 
         Quaternion targetRotation = startLocalRotation * Quaternion.Euler(swingRotation);
         float elapsed = 0f;
-        
+
         while (elapsed < swingDuration)
         {
             elapsed += Time.deltaTime;
@@ -49,7 +50,7 @@ public class SwordBehavior : MonoBehaviour
             yield return null;
         }
 
-        DoDamage();
+        MineResource();
 
         elapsed = 0f;
 
@@ -65,21 +66,22 @@ public class SwordBehavior : MonoBehaviour
         isSwinging = false;
     }
 
-    private void DoDamage()
+    private void MineResource()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, attackRange))
+        if (Physics.Raycast(ray, out RaycastHit hit, miningRange))
         {
-            if (!hit.collider.CompareTag("Enemy"))
+            if (!hit.collider.CompareTag("Resource"))
             {
                 return;
             }
-            EnemyHealth enemyHealth = hit.collider.GetComponentInParent<EnemyHealth>();
+            mineSoundEffect?.PlaySound();
+            Mineable mineable = hit.collider.GetComponentInParent<Mineable>();
 
-            if (enemyHealth != null)
+            if (mineable != null)
             {
-                enemyHealth.TakeDamage(damage);
+                mineable.Mine(miningDamage);
             }
         }
     }

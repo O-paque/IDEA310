@@ -68,6 +68,7 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log($"{gameObject.name} died.");
         moveOnDeath1?.TriggerMove();
         moveOnDeath2?.TriggerMove();
+        GetComponent<ResourceDrop>()?.Drop();
         Destroy(gameObject);
     }
 }

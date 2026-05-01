@@ -6,6 +6,7 @@ public class LevelTransition : MonoBehaviour
     public string nextSceneName;
 
     private bool itemCollected = false;
+    [SerializeField] bool needToCollect;
 
     public GameObject player;
     
@@ -14,6 +15,15 @@ public class LevelTransition : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+
+        if (needToCollect)
+        {
+            itemCollected = false;
+        }
+        else
+        {
+            itemCollected = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
