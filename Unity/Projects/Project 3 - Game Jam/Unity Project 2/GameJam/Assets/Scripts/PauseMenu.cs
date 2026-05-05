@@ -8,6 +8,24 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public MonoBehaviour playerController;
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void Start()
+    {
+        BindPlayerIfNeeded();
+
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -50,5 +68,29 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameIsPaused = false;
+        Time.timeScale = 1f;
+
+        playerController = null;
+        BindPlayerIfNeeded();
+
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(false);
+    }
+
+    private void BindPlayerIfNeeded()
+    {
+        if (playerController != null)
+            return;
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            playerController = playerObj.GetComponent<PlayerController>();
+        }
     }
 }

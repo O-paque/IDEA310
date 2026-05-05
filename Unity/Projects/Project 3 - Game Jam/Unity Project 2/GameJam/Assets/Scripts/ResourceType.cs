@@ -3,8 +3,7 @@ using UnityEngine;
 public enum ResourceType
 {
     Stone,
-    Copper,
-    Iron,
     Crystal,
+    Ether,
     Bone
 }

@@ -53,6 +53,19 @@ public class TriggeredSoundEffect : MonoBehaviour
         }
     }
 
+    public void PlayAndDetach()
+    {
+        if (clip == null) return;
+
+        audioSource.clip = clip;
+        audioSource.loop = false;
+        audioSource.volume = volume;
+
+        audioSource.transform.parent = null;
+        audioSource.Play();
+
+        Destroy(audioSource.gameObject, clip.length + 0.1f);
+    }
     public void StartLoop()
     {
         if (clip == null) return;

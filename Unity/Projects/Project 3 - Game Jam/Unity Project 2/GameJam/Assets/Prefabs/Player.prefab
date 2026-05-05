@@ -46,7 +46,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -161,7 +161,6 @@ GameObject:
   - component: {fileID: 3813070018769934758}
   - component: {fileID: 5569746060393126499}
   - component: {fileID: 6566651420280072199}
-  - component: {fileID: 4016200485550434086}
   - component: {fileID: 4095761841555478292}
   m_Layer: 0
   m_Name: Player
@@ -338,19 +337,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4016200485550434086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648181714693985801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93cb068db361c94468944d60e5237b13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  maxCapacity: 10
 --- !u!114 &4095761841555478292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,7 +1129,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

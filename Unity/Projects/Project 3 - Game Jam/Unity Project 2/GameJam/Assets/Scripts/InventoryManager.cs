@@ -3,10 +3,24 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance;
+
     public int maxCapacity = 10;
 
     public Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>();
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+    
     public int CurrentCapacity
     {
         get

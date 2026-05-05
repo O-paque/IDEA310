@@ -11,9 +11,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float flashDuration = 0.1f;
     [SerializeField] private Color flashColor = Color.red;
     [Header("Random")]
-    [SerializeField] private TriggeredSoundEffect hitSound;
     [SerializeField] private ObjectMoveOnDeath moveOnDeath1;
     [SerializeField] private ObjectMoveOnDeath moveOnDeath2;
+
+    [Header("Sounds")]
+    [SerializeField] private TriggeredSoundEffect hitSound;
+    [SerializeField] private TriggeredSoundEffect deathSound;
 
     private Renderer[] renderers;
     private Color[] originalColors;
@@ -44,6 +47,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            hitSound?.PlayAndDetach();
             Die();
         }
     }
@@ -68,6 +72,7 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log($"{gameObject.name} died.");
         moveOnDeath1?.TriggerMove();
         moveOnDeath2?.TriggerMove();
+        deathSound?.PlayAndDetach();
         GetComponent<ResourceDrop>()?.Drop();
         Destroy(gameObject);
     }
