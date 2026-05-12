@@ -8,19 +8,17 @@ public enum ToolType
     Pickaxe
 }
 
-
 public class ToolSwitcher : MonoBehaviour
 {
     [Header("Current Tool")]
     public ToolType currentTool = ToolType.Sword;
 
-    [Header("Tool Objects")]
+    [Header("Tool Holder Objects")]
     public GameObject swordObject;
     public GameObject pickaxeObject;
 
-    [Header("Tool Behaviors")]
-    public SwordBehavior swordBehavior;
-    public PickaxeBehavior pickaxeBehavior;
+    [Header("Tool Visuals")]
+    [SerializeField] private PlayerTools PlayerTools;
 
     [Header("Tool Positions")]
     public Vector3 equippedLocalPosition;
@@ -39,6 +37,12 @@ public class ToolSwitcher : MonoBehaviour
     public TriggeredSoundEffect pickaxeSoundEffect;
     public TriggeredSoundEffect swordSoundEffect;
 
+    private void Awake()
+    {
+        if (PlayerTools == null)
+            PlayerTools = GetComponent<PlayerTools>();
+    }
+
     private void Start()
     {
         EquipToolInstant(currentTool);
@@ -46,22 +50,28 @@ public class ToolSwitcher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !isSwitching && !currentToolIsBusy())
+        if (Input.GetMouseButtonDown(1) && !isSwitching && !CurrentToolIsBusy())
         {
             ToggleTool();
         }
     }
 
-    private bool currentToolIsBusy()
+    private bool CurrentToolIsBusy()
     {
-        if (currentTool == ToolType.Sword && swordBehavior != null)
+        if (currentTool == ToolType.Sword && swordObject != null && swordObject.activeInHierarchy)
         {
-            return swordBehavior.isBusy();
+            SwordBehavior sword = swordObject.GetComponentInChildren<SwordBehavior>();
+
+            if (sword != null)
+                return sword.isBusy();
         }
 
-        if (currentTool == ToolType.Pickaxe && pickaxeBehavior != null)
+        if (currentTool == ToolType.Pickaxe && pickaxeObject != null && pickaxeObject.activeInHierarchy)
         {
-            return pickaxeBehavior.isBusy();
+            PickaxeBehavior pickaxe = pickaxeObject.GetComponentInChildren<PickaxeBehavior>();
+
+            if (pickaxe != null)
+                return pickaxe.isBusy();
         }
 
         return false;
@@ -81,31 +91,36 @@ public class ToolSwitcher : MonoBehaviour
         isSwitching = true;
 
         if (nextTool == ToolType.Sword)
-        {
             swordSoundEffect?.PlaySound();
-        }
         else
-        {
             pickaxeSoundEffect?.PlaySound();
-        }
 
         GameObject currentObject = currentTool == ToolType.Sword ? swordObject : pickaxeObject;
         GameObject nextObject = nextTool == ToolType.Sword ? swordObject : pickaxeObject;
 
-        Transform currentTransform = currentObject.transform;
-        Transform nextTransform = nextObject.transform;
+        if (currentObject == null || nextObject == null)
+        {
+            isSwitching = false;
+            yield break;
+        }
 
-        yield return MoveTool(currentTransform, equippedLocalPosition, hiddenLocalPosition);
+        yield return MoveTool(currentObject.transform, currentObject.transform.localPosition, hiddenLocalPosition);
 
         currentObject.SetActive(false);
 
         nextObject.SetActive(true);
-        nextTransform.localPosition = hiddenLocalPosition;
+        nextObject.transform.localPosition = hiddenLocalPosition;
 
         currentTool = nextTool;
         UpdateToolIcon();
 
-        yield return MoveTool(nextTransform, hiddenLocalPosition, equippedLocalPosition);
+        if (PlayerTools != null)
+            PlayerTools.ApplyToolVisuals();
+
+        yield return MoveTool(nextObject.transform, hiddenLocalPosition, equippedLocalPosition);
+
+        if (PlayerTools != null)
+            PlayerTools.ApplyToolVisuals();
 
         isSwitching = false;
     }
@@ -130,16 +145,24 @@ public class ToolSwitcher : MonoBehaviour
     {
         currentTool = tool;
 
-        swordObject.SetActive(tool == ToolType.Sword);
-        pickaxeObject.SetActive(tool == ToolType.Pickaxe);
+        if (swordObject != null)
+        {
+            swordObject.SetActive(tool == ToolType.Sword);
+            swordObject.transform.localPosition =
+                tool == ToolType.Sword ? equippedLocalPosition : hiddenLocalPosition;
+        }
 
-        swordObject.transform.localPosition =
-            tool == ToolType.Sword ? equippedLocalPosition : hiddenLocalPosition;
-
-        pickaxeObject.transform.localPosition =
-            tool == ToolType.Pickaxe ? equippedLocalPosition : hiddenLocalPosition;
+        if (pickaxeObject != null)
+        {
+            pickaxeObject.SetActive(tool == ToolType.Pickaxe);
+            pickaxeObject.transform.localPosition =
+                tool == ToolType.Pickaxe ? equippedLocalPosition : hiddenLocalPosition;
+        }
 
         UpdateToolIcon();
+
+        if (PlayerTools != null)
+            PlayerTools.ApplyToolVisuals();
     }
 
     private void UpdateToolIcon()

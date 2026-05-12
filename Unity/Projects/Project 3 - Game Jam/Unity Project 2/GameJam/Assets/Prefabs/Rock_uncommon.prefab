@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mineable
   mineSoundEffect: {fileID: 7418684079213416749}
-  health: 4
+  health: 5
 --- !u!114 &4126110152365695424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   drops:
   - resourceType: 1
     minAmount: 1
-    maxAmount: 1
+    maxAmount: 2
     pickupPrefab: {fileID: 3063974280689850260, guid: 393053da5837e094f96a9e7e9dd5a699, type: 3}
     dropChance: 1
 --- !u!1 &4039355531099636825

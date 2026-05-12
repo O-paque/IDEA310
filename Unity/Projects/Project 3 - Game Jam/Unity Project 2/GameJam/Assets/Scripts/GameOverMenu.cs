@@ -46,9 +46,17 @@ public class GameOverMenu : MonoBehaviour
 
     public void RestartScene()
     {
-        Time.timeScale = 1f;
+        ResetGameOverUI();
 
-        Destroy(GameManager.Instance.gameObject);
+        if (HealthManager.Instance != null)
+        {
+            HealthManager.Instance.ResetAfterGameOver();
+        }
+
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.ClearInventory();
+        }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -58,7 +66,9 @@ public class GameOverMenu : MonoBehaviour
         ResetGameOverUI();
 
         if (HealthManager.Instance != null)
+        {
             HealthManager.Instance.ResetAfterGameOver();
+        }
 
         SceneManager.LoadScene("Main Menu");
     }

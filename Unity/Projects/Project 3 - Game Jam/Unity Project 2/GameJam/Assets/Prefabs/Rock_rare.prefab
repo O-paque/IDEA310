@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mineable
   mineSoundEffect: {fileID: 8423632970295152601}
-  health: 5
+  health: 7
 --- !u!114 &1504779710075403941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 6432535732074358624}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.946594, y: -1.5745733, z: 31.905975}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

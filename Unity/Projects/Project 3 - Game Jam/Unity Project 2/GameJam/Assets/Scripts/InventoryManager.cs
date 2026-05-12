@@ -18,7 +18,6 @@ public class InventoryManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
     
     public int CurrentCapacity
@@ -63,6 +62,12 @@ public class InventoryManager : MonoBehaviour
         if (!HasResource(type, amount)) return false;
 
         resources[type] -= amount;
+
+        if (resources[type] <= 0)
+        {
+            resources.Remove(type);
+        }
+
         return true;
     }
 
@@ -74,5 +79,10 @@ public class InventoryManager : MonoBehaviour
     public void IncreaseCapacity(int amount)
     {
         maxCapacity += amount;
+    }
+
+    public void ClearInventory()
+    {
+        resources.Clear();
     }
 }
